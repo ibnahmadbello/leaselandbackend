@@ -14,18 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClient.ResponseSpec;
 
 import com.arab.leaseland.entity.PersonRequest;
 import com.arab.leaseland.entity.RRRequest;
 import com.arab.leaseland.util.Converter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 
-import io.netty.handler.codec.http2.Http2Headers;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -52,17 +47,7 @@ public class RRRController {
 		.header("Authorization", "remitaConsumerKey="+merchantId+",remitaConsumerToken="+apiHash)
 		.header("Content-Type", "application/json")
 //		.header("Accept", "application/json")
-		.retrieve().bodyToMono(String.class);
-		
-		
-		//		String merchantId = + serviceTypeId+ orderId+totalAmount+apiKey
-//				var merchantId = "2547916";
-//		var apiKey = "1946"
-//		var serviceTypeId = "4430731"
-//		var d = new Date();
-//		var orderId = d.getTime();
-//		var totalAmount = "1000";
-//		var apiHash = CryptoJS.SHA512(merchantId+ serviceTypeId+ orderId+totalAmount+apiKey);
+		.retrieve().bodyToMono(String.class);		
 		
 	}
 	
