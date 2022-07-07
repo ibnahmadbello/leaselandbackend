@@ -28,7 +28,7 @@ public class RRRController {
 	@RequestMapping(method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Mono<String> getRRR(@RequestBody PersonRequest personRequest) throws JsonMappingException, JsonProcessingException {
+	public String getRRR(@RequestBody PersonRequest personRequest) throws JsonMappingException, JsonProcessingException {
 		
 		Date date = new Date();
 		long orderId = date.getTime();
@@ -40,8 +40,7 @@ public class RRRController {
 				personRequest.getPayerEmail(), personRequest.getPayerPhone(), personRequest.getDescription()))
 		.header("Authorization", "remitaConsumerKey="+merchantId+",remitaConsumerToken="+apiHash)
 		.header("Content-Type", "application/json")
-//		.header("Accept", "application/json")
-		.retrieve().bodyToMono(String.class);		
+		.retrieve().bodyToMono(String.class).block();		
 		
 	}
 	
